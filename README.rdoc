@@ -14,16 +14,19 @@ gem install buildr-resolver
 
 === Usage
 
-[buildfile] 
+example +buildfile+ 
 
 	require 'buildr/resolver'
 	deps = ['org.apache.activemq:activemq-spring:jar:5.4.2']
-	deps = Buildr::Resolver.resolve( deps )
+	deps =  Buildr::Resolver.resolve( deps )
 	define 'example' do
 		project.version = '0.1.0'
 		compile.with deps
 		package :jar
 	end
+	
+The +Buildr::Resolver.resolve( deps )+ is what take the activemq dependency and resolves 
+all the additional dependencies for it.
 
 == License
 
