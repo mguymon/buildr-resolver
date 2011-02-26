@@ -8,7 +8,7 @@ https://github.com/mguymon/buildr-resolver
 
 === Install
 
-Presently requires a recent JRuby runtime.
+Presently requires a recent JRuby runtime and requires Buildr and Naether.
 
 gem install buildr-resolver
 
