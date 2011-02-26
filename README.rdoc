@@ -1,8 +1,8 @@
-= Buildr-Naether
+= Buildr Resolver
 
-A Java Dependency Resolver for Buildr using Maven's Aether
+A Java Dependency Resolver for Buildr using Maven's Aether via the Naether wrapper
 
-https://github.com/mguymon/buildr-naether
+https://github.com/mguymon/buildr-resolver
 
 
 

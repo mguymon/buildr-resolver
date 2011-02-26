@@ -1,7 +1,8 @@
+require 'rubygems'
 require 'naether'
 
 module Buildr
-  module Naether
+  module Resolver
     
   end
 end

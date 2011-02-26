@@ -14,16 +14,16 @@
 # the License.
 
 Gem::Specification.new do |spec|
-  spec.name           = 'buildr-naether'
+  spec.name           = 'buildr-resolver'
   spec.version        = 0.1
   spec.author         = 'Michael Guymon'
   spec.email          = "michael.guymon@gmail.com"
-  spec.homepage       = "https://github.com/mguymon/buildr-naether"
+  spec.homepage       = "https://github.com/mguymon/buildr-resolver"
   spec.summary        = "Java Dependency Resolver for Buildr"
   spec.description    = <<-TEXT
-Java Dependency Resolver for Buildr using Maven's Aether
+Java Dependency Resolver for Buildr using Maven's Aether via the Naether wrapper
   TEXT
-  spec.rubyforge_project  = 'buildr-naether'
+  spec.rubyforge_project  = 'buildr-resolver'
 
   # Rakefile needs to create spec for both platforms (ruby and java), using the
   # $platform global variable.  In all other cases, we figure it out from RUBY_PLATFORM.
