@@ -15,6 +15,7 @@ gem install buildr-resolver
 === Usage
 
 [buildfile] 
+
 	require 'buildr/resolver'
 	deps = ['org.apache.activemq:activemq-spring:jar:5.4.2']
 	deps = Buildr::Resolver.resolve( deps )
