@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    buildr-naether (0.1-java)
+    buildr-resolver (0.1-java)
       buildr (= 1.4.4)
       naether (= 0.1)
 
@@ -49,4 +49,4 @@ PLATFORMS
   java
 
 DEPENDENCIES
-  buildr-naether!
+  buildr-resolver!

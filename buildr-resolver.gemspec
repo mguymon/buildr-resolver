@@ -31,7 +31,7 @@ Java Dependency Resolver for Buildr using Maven's Aether via the Naether wrapper
 
   spec.files          = Dir['{lib,spec}/**/*', '*.{gemspec}'] +
                         ['LICENSE','README.rdoc']
-  spec.require_paths  = 'lib'
+  spec.require_paths  = ['lib']
   
   #spec.has_rdoc         = true
   #spec.extra_rdoc_files = 'README.rdoc', 'LICENSE'
