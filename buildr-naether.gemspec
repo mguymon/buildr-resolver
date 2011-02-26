@@ -41,5 +41,5 @@ Java Dependency Resolver for Buildr using Maven's Aether
 
   # Tested against these dependencies.
   spec.add_dependency 'buildr',               '1.4.4'
-  spec.add_development_dependency 'rspec',    '~> 2.1.0'
+  spec.add_dependency 'naether',              '0.1'
 end

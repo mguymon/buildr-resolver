@@ -1,3 +1,5 @@
+require 'naether'
+
 module Buildr
   module Naether
     
