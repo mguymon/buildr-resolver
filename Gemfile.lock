@@ -3,7 +3,7 @@ PATH
   specs:
     buildr-resolver (0.1-java)
       buildr (= 1.4.4)
-      naether (= 0.1)
+      naether (= 0.2)
 
 GEM
   remote: http://rubygems.org/
@@ -34,7 +34,7 @@ GEM
       bouncy-castle-java
     json_pure (1.4.3)
     minitar (0.5.3)
-    naether (0.1-java)
+    naether (0.2-java)
     net-sftp (2.0.4)
       net-ssh (>= 2.0.9)
     net-ssh (2.0.23)
