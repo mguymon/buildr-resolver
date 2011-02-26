@@ -15,7 +15,7 @@
 
 Gem::Specification.new do |spec|
   spec.name           = 'buildr-resolver'
-  spec.version        = 0.1
+  spec.version        = 0.2
   spec.author         = 'Michael Guymon'
   spec.email          = "michael.guymon@gmail.com"
   spec.homepage       = "https://github.com/mguymon/buildr-resolver"
