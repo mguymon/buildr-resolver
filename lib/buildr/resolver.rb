@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'naether'
 
 module Buildr
@@ -5,17 +6,15 @@ module Buildr
     class << self
       
       def resolver_dependencies
-        Naether.bootstrap_dependencies.to_a
+        Naether.bootstrap_dependencies
       end
       
       def resolve( dependencies )
         # Load Naether jar dependencies
-        naether_classpath = Buildr.artifacts(resolver_dependencies).each(&:invoke).map(&:to_s)
-        naether_classpath.each do |jar|
-          require jar
-        end
+        naether_jars = [Naether::Bootstrap.naether_jar]
+        naether_jars = naether_jars + Buildr.artifacts(resolver_dependencies).each(&:invoke).map(&:to_s)
         
-        naether = Naether.new
+        naether = Naether.create_from_jars( naether_jars )
         naether.dependencies = dependencies
         naether.resolve_dependencies
         

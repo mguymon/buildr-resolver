@@ -1,14 +1,12 @@
 = Buildr Resolver
 
-A Java Dependency Resolver for Buildr using Maven's Aether via the Naether wrapper
+A Java Dependency Resolver for {Buildr}[https://github.com/apache/buildr] using Maven's {Aether}[https://github.com/sonatype/sonatype-aether] via {https://github.com/mguymon/naether}[Naether] wrapper
 
 https://github.com/mguymon/buildr-resolver
 
 == Get Started
 
 === Install
-
-Presently requires a recent JRuby runtime and requires Buildr and Naether.
 
 gem install buildr-resolver
 

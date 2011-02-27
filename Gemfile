@@ -1,4 +1,9 @@
-# Use `bundle install` in order to install these gems
-# Use `bundle exec rake` in order to run the specs using the bundle
 source "http://rubygems.org"
-gemspec
+
+gem "naether", "0.2.2"
+gem "buildr",  "1.4.4"
+
+group :development do
+  gem "bundler", "~> 1.0.0"
+  gem "jeweler", "~> 1.5.2"
+end
