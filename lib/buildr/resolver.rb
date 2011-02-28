@@ -15,9 +15,11 @@ module Buildr
         naether_jars = naether_jars + Buildr.artifacts(resolver_dependencies).each(&:invoke).map(&:to_s)
         
         naether = Naether.create_from_jars( naether_jars )
-        naether.clear_remote_repositories
-        Buildr.repositories.remote.each do |repo|
-          naether.add_remote_repository( repo )
+        if Buildr.repositories.remote.size > 0
+          naether.clear_remote_repositories
+          Buildr.repositories.remote.each do |repo|
+            naether.add_remote_repository( repo )
+          end
         end
         naether.dependencies = dependencies
         naether.resolve_dependencies

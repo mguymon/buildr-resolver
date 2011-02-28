@@ -1,6 +1,8 @@
 require 'lib/buildr/resolver'
 require 'buildr'
 
+Buildr.application.instance_eval { @rakefile = File.expand_path('buildfile') }
+
 describe Buildr::Resolver do
   context "Module" do
     it "should resolve dependencies" do
