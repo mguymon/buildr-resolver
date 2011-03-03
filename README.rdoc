@@ -1,6 +1,6 @@
 = Buildr Resolver
 
-A Java Dependency Resolver for {Buildr}[https://github.com/apache/buildr] using Maven's {Aether}[https://github.com/sonatype/sonatype-aether] via {Naether}[https://github.com/mguymon/naether] wrapper.
+A Java Dependency Resolver for {Buildr}[https://github.com/apache/buildr] using Maven's {Aether}[https://github.com/sonatype/sonatype-aether] via the wrapper {Naether}[https://github.com/mguymon/naether].
 
 
 https://github.com/mguymon/buildr-resolver
