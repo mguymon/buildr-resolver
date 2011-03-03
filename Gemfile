@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
-gem "naether", "0.2.6"
-gem "buildr",  "1.4.4"
+gem "naether", "0.3.0"
+gem "buildr",  ">= 1.4.4"
 
 group :development do
   gem "rspec",   "~> 1.3.1"

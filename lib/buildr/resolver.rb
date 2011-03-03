@@ -21,8 +21,11 @@ module Buildr
             naether.add_remote_repository( repo )
           end
         end
+        
+        naether.local_repo_path = Repositories.instance.local
+        
         naether.dependencies = dependencies
-        naether.resolve_dependencies
+        naether.resolve_dependencies( false )
         
         naether.dependencies
       end
