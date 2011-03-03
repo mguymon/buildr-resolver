@@ -1,6 +1,7 @@
 = Buildr Resolver
 
-A Java Dependency Resolver for {Buildr}[https://github.com/apache/buildr] using Maven's {Aether}[https://github.com/sonatype/sonatype-aether] via {https://github.com/mguymon/naether}[Naether] wrapper
+A Java Dependency Resolver for {Buildr}[https://github.com/apache/buildr] using Maven's {Aether}[https://github.com/sonatype/sonatype-aether] via {Naether}[https://github.com/mguymon/naether] wrapper.
+
 
 https://github.com/mguymon/buildr-resolver
 
@@ -24,8 +25,8 @@ example +buildfile+
 		package :jar
 	end
 	
-The Buildr::Resolver.resolve( deps ) is what take the activemq dependency and resolves 
-all the additional dependencies for it. If you added a +puts+ +dep+, it would output:
+The Buildr::Resolver.resolve( deps ) is what takes the activemq dependency and resolves 
+all the additional dependencies for it. If you added a +puts+ +dep+ after Buildr::Resolver.resolve, it would output:
 
 	org.apache.activemq:activemq-spring:jar:5.4.2
 	commons-logging:commons-logging-api:jar:1.1
