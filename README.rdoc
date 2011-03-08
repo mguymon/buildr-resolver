@@ -70,8 +70,8 @@ example +buildfile+ with exclusions
     require 'buildr/resolver'
     Java.load # must be called before Buildr::Resolver.resolve if using Ruby due to Rjb startup of JVM by Buildr
     deps = ['org.apache.activemq:activemq-spring:jar:5.4.2']
-    *excluded = ['commons-logging', 'log4j', 'logkit' ]*
-    deps =  Buildr::Resolver.resolve( deps, *excluded* )
+    <strong>excluded = ['commons-logging', 'log4j', 'logkit' ]</strong>
+    deps =  Buildr::Resolver.resolve( deps, <strong>excluded</strong> )
     define 'example' do
         project.version = '0.1.0'
         compile.with deps
