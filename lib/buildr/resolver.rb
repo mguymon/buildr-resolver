@@ -1,20 +1,13 @@
 require 'rubygems'
 require 'naether'
+require "#{File.dirname(__FILE__)}/resolver/java"
 
 module Buildr
   module Resolver
     class << self
       
-      def resolver_dependencies
-        Naether.bootstrap_dependencies
-      end
-      
-      def resolve( dependencies )
-        # Load Naether jar dependencies
-        naether_jars = [Naether::Bootstrap.naether_jar]
-        naether_jars = naether_jars + Buildr.artifacts(resolver_dependencies).each(&:invoke).map(&:to_s)
-        
-        naether = Naether.create_from_jars( naether_jars )
+      def resolve( dependencies, excludes=[] )
+        naether = Naether.create_from_jars( Buildr::Resolver::Java.instance.jar_dependencies )
         if Buildr.repositories.remote.size > 0
           naether.clear_remote_repositories
           Buildr.repositories.remote.each do |repo|
@@ -27,7 +20,22 @@ module Buildr
         naether.dependencies = dependencies
         naether.resolve_dependencies( false )
         
-        naether.dependencies
+        dependences = naether.dependencies
+        
+        unless excludes.nil?
+          unless excludes.is_a? Array
+            excludes = [excludes]
+          end
+          
+          dependences.delete_if do |dep|
+            excludes.select { |exclude| dep =~ /^#{exclude}/ }.size > 0
+          end
+        end
+      end
+      
+      def deploy_artifact( notation, file_path, url, opts = {} )
+        naether = Naether.create_from_jars( Buildr::Resolver::Java.instance.jar_dependencies )
+        naether.deploy_artifact( notation, file_path, url )
       end
     end
   end
