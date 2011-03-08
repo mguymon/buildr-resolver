@@ -55,7 +55,7 @@ module Buildr
         naether.deploy_artifact( notation, file_path, url, opts )
       end
       
-      def write_pom( notation, file_path, dependencies, excludes=[], repos = [] )
+      def write_pom( notation, file_path )
         naether.write_pom( notation, file_path )
       end
     end
