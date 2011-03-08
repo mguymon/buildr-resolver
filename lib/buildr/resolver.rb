@@ -28,7 +28,7 @@ module Buildr
           end
           
           dependences.delete_if do |dep|
-            excludes.select { |exclude| dep =~ /^#{exclude}/ }.size > 0
+            excludes.select { |exclude| dep.to_s =~ /^#{exclude}/ }.size > 0
           end
         end
       end
