@@ -31,5 +31,18 @@ describe Buildr::Resolver do
       Buildr::Resolver.deploy_artifact( "test:test:jar:1.12", Naether::Bootstrap.naether_jar, 'file:tmp/test-repo' )
       File.exists?('tmp/test-repo/test/test/1.12/test-1.12.jar').should be_true
     end
+    
+    it "should write a pom" do
+      unless File.exists? 'tmp'
+        FileUtils::mkdir 'tmp'
+      end
+      Buildr::Resolver.write_pom( "buildr-resolver:buildr-resolver:jar:45.45", "tmp/pom.xml", [ "junit:junit:jar:4.8.2", "ch.qos.logback:logback-classic:jar:0.9.24" ] )
+      File.exists?( 'tmp/pom.xml' ).should be_true
+      
+      xml = IO.read( 'tmp/pom.xml' ) 
+      xml.should match /.+ch.qos.logback<\/groupId>\s+<artifactId>logback-core<\/artifactId>\s+<version>0.9.24.+/
+      xml.should match /.+org.slf4j<\/groupId>\s+<artifactId>slf4j-api<\/artifactId>\s+<version>1.6.0.+/
+      
+    end
   end
 end
