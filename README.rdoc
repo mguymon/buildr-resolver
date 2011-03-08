@@ -25,8 +25,8 @@ example +buildfile+
 		package :jar
 	end
 	
-The Buildr::Resolver.resolve( deps ) is what takes the activemq dependency and resolves 
-all the additional dependencies for it. If you added a +puts+ +dep+ after Buildr::Resolver.resolve, it would output:
+The +Buildr::Resolver.resolve( deps )+ is what takes the activemq dependency and resolves 
+all the additional dependencies for it. If you added a +puts+ +dep+ after +Buildr::Resolver.resolve+, it would output:
 
 	org.apache.activemq:activemq-spring:jar:5.4.2
 	commons-logging:commons-logging-api:jar:1.1
@@ -61,6 +61,54 @@ all the additional dependencies for it. If you added a +puts+ +dep+ after Buildr
 	org.springframework.osgi:spring-osgi-core:jar:1.2.1
 	org.springframework.osgi:spring-osgi-io:jar:1.2.1
 
+
+You can also manually exclude dependencies as an optional parameter to +Buildr::Resolver.resolve+. The exclusions
+are regexp matched, so you can pass in only a groupId or the full dependency notation.
+
+example +buildfile+ with exclusions
+
+    require 'buildr/resolver'
+    Java.load # must be called before Buildr::Resolver.resolve if using Ruby due to Rjb startup of JVM by Buildr
+    deps = ['org.apache.activemq:activemq-spring:jar:5.4.2']
+    *excluded = ['commons-logging', 'log4j', 'logkit' ]*
+    deps =  Buildr::Resolver.resolve( deps, *excluded* )
+    define 'example' do
+        project.version = '0.1.0'
+        compile.with deps
+        package :jar
+    end
+
+Will result in the following, excluding commons-logging:commons-logging-api:jar:1.1, commons-logging:commons-logging:jar:1.1
+log4j:log4j:jar:1.2.12, and logkit:logkit:jar:1.0.1
+
+    org.apache.activemq:activemq-spring:jar:5.4.2
+    org.apache.activemq:activemq-core:jar:5.4.2
+    org.apache.geronimo.specs:geronimo-jms_1.1_spec:jar:1.1.1
+    org.apache.activemq:activeio-core:jar:3.1.2
+    avalon-framework:avalon-framework:jar:4.1.3
+    javax.servlet:servlet-api:jar:2.3
+    org.apache.activemq:kahadb:jar:5.4.2
+    org.apache.activemq.protobuf:activemq-protobuf:jar:1.1
+    org.osgi:org.osgi.core:jar:4.1.0
+    org.apache.geronimo.specs:geronimo-j2ee-management_1.1_spec:jar:1.0.1
+    org.springframework:spring-context:jar:3.0.3.RELEASE
+    org.springframework:spring-aop:jar:3.0.3.RELEASE
+    aopalliance:aopalliance:jar:1.0
+    org.springframework:spring-expression:jar:3.0.3.RELEASE
+    org.springframework:spring-asm:jar:3.0.3.RELEASE
+    commons-net:commons-net:jar:2.0
+    org.jasypt:jasypt:jar:1.6
+    commons-lang:commons-lang:jar:2.1
+    commons-codec:commons-codec:jar:1.1
+    com.ibm.icu:icu4j:jar:4.0.1
+    org.apache.activemq:activemq-pool:jar:5.4.2
+    org.apache.geronimo.specs:geronimo-jta_1.0.1B_spec:jar:1.0.1
+    commons-pool:commons-pool:jar:1.5.4
+    org.springframework:spring-beans:jar:3.0.3.RELEASE
+    org.springframework:spring-core:jar:3.0.3.RELEASE
+    org.springframework:spring-test:jar:3.0.3.RELEASE
+    org.springframework.osgi:spring-osgi-core:jar:1.2.1
+    org.springframework.osgi:spring-osgi-io:jar:1.2.1
 
 == License
 
