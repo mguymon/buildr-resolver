@@ -25,8 +25,8 @@ example +buildfile+
 		package :jar
 	end
 	
-The +Buildr::Resolver.resolve( deps )+ is what takes the activemq dependency and resolves 
-all the additional dependencies for it. If you added a +puts+ +dep+ after +Buildr::Resolver.resolve+, it would output:
+The <tt>Buildr::Resolver.resolve(deps)</tt> is what takes the activemq dependency and resolves 
+all the additional dependencies for it. If you added a <tt>puts dep</tt> after <tt>Buildr::Resolver.resolve</tt>, it would output:
 
 	org.apache.activemq:activemq-spring:jar:5.4.2
 	commons-logging:commons-logging-api:jar:1.1
