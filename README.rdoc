@@ -63,7 +63,7 @@ all the additional dependencies for it. If you added a <tt>puts dep</tt> after <
 
 
 You can also manually exclude dependencies as an optional parameter to <tt>Buildr::Resolver.resolve</tt>. The exclusions
-are regexp matched, so you can pass in only a groupId or the full dependency notation.
+are regex matched, so you can pass in only a groupId or the full dependency notation.
 
 example +buildfile+ with exclusions
 
