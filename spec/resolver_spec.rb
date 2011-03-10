@@ -36,7 +36,8 @@ describe Buildr::Resolver do
       unless File.exists? 'tmp'
         FileUtils::mkdir 'tmp'
       end
-      Buildr::Resolver.write_pom( "buildr-resolver:buildr-resolver:jar:45.45", "tmp/pom.xml", [ "junit:junit:jar:4.8.2", "ch.qos.logback:logback-classic:jar:0.9.24" ] )
+      Buildr::Resolver.resolve( ['ch.qos.logback:logback-classic:jar:0.9.24'] )
+      Buildr::Resolver.write_pom( "buildr-resolver:buildr-resolver:jar:45.45", "tmp/pom.xml" )
       File.exists?( 'tmp/pom.xml' ).should be_true
       
       xml = IO.read( 'tmp/pom.xml' ) 
