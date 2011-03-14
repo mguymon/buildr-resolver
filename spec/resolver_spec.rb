@@ -13,13 +13,13 @@ describe Buildr::Resolver do
     end
     
     it "should resolve dependencies with exclusions" do
-      dependencies = Buildr::Resolver.resolve( ['ch.qos.logback:logback-classic:jar:0.9.24'], ['ch.qos.logback:logback-classic'] )
+      dependencies = Buildr::Resolver.resolve( ['ch.qos.logback:logback-classic:jar:0.9.24'], { :excludes => ['ch.qos.logback:logback-classic'] } )
       dependencies.should eql ["ch.qos.logback:logback-core:jar:0.9.24", "org.slf4j:slf4j-api:jar:1.6.0"]
       
-      dependencies = Buildr::Resolver.resolve( ['ch.qos.logback:logback-classic:jar:0.9.24'], ['org.slf4j'] )
+      dependencies = Buildr::Resolver.resolve( ['ch.qos.logback:logback-classic:jar:0.9.24'], { :excludes => ['org.slf4j'] } )
       dependencies.should eql ["ch.qos.logback:logback-classic:jar:0.9.24","ch.qos.logback:logback-core:jar:0.9.24"]
       
-      dependencies = Buildr::Resolver.resolve( ['ch.qos.logback:logback-classic:jar:0.9.24'], ['ch.qos.logback:logback-classic:jar:0.9.24', 'ch.qos.logback:logback-core:jar:0.9.24'] )
+      dependencies = Buildr::Resolver.resolve( ['ch.qos.logback:logback-classic:jar:0.9.24'], { :excludes => ['ch.qos.logback:logback-classic:jar:0.9.24', 'ch.qos.logback:logback-core:jar:0.9.24'] } )
       dependencies.should eql ["org.slf4j:slf4j-api:jar:1.6.0"]
     end
     

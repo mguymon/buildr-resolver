@@ -10,19 +10,26 @@ module Buildr
         Buildr::Resolver::Java.instance.naether
       end
       
-      # Resolve dependencies for an array of dependencies
+      # Resolve dependencies for an array of dependencies in the format of 'groupId:artifactId:type:version'
+      # or as a hash to define the scope, 'groupId:artifactId:type:version' => 'compile'. Example:
       #
-      # excludes is an array of dependencies to exclude
-      # repos is an array of {:url => '', :username => '', :password => '' } of additional remote repos
-      # with authentication
-      def resolve( dependencies, excludes=[], repos = [] )
+      # [ 'ch.qos.logback:logback-classic:jar:0.9.24', {'junit:junit:jar:4.8.2' => 'test'} ] 
+      #
+      # Options
+      #   * :excludes - an array of dependencies to regex exclude
+      #   * :repos - an array of {:url => '', :username => '', :password => '' } of additional remote repos that require auth
+      def resolve( dependencies, opts = {} )
+        
+        options = opts
+        
         if Buildr.repositories.remote.size > 0
           naether.clear_remote_repositories
           Buildr.repositories.remote.each do |repo|
             naether.add_remote_repository( repo )
           end
           
-          unless repos.nil?
+          unless options[:repos].nil?
+            repos = options[:repos]
             unless repos.is_a? Array
               repos = [repos]
             end
@@ -38,17 +45,26 @@ module Buildr
         naether.dependencies = dependencies
         naether.resolve_dependencies( false )
         
-        dependences = naether.dependencies
-        
-        unless excludes.nil?
+        unless options[:excludes].nil?
+          
+          excludes = options[:excludes]
+          
           unless excludes.is_a? Array
             excludes = [excludes]
           end
           
-          dependences.delete_if do |dep|
-            excludes.select { |exclude| dep.to_s =~ /^#{exclude}/ }.size > 0
+          dependencies = naether.dependencies
+          dependencies.delete_if do |dep|
+            excludes.select do |exclude| 
+              dep.toString() =~ /^#{exclude}/
+            end.size > 0
           end
+          
+          naether.dependencies = dependencies
+          
         end
+        
+        naether.dependenciesNotation
       end
       
       def deploy_artifact( notation, file_path, url, opts = {} )
