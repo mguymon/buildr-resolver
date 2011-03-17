@@ -9,11 +9,9 @@ rescue Bundler::BundlerError => e
 end
 require 'rake'
 
-require 'spec/rake/spectask'
+require 'rspec/core/rake_task'
 
-Spec::Rake::SpecTask.new(:spec) do |t|
-  t.spec_files = FileList['spec/**/*_spec.rb']
-end
+RSpec::Core::RakeTask.new(:spec) 
 
 task :test => :spec
 
