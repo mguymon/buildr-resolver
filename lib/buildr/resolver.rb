@@ -17,7 +17,6 @@ module Buildr
       #
       # Options
       #   * :excludes - an array of dependencies to regex exclude
-      #   * :repos - an array of {:url => '', :username => '', :password => '' } of additional remote repos that require auth
       def resolve( dependencies, opts = {} )
         
         options = opts
@@ -25,19 +24,8 @@ module Buildr
         if Buildr.repositories.remote.size > 0
           naether.clear_remote_repositories
           Buildr.repositories.remote.each do |repo|
-            naether.add_remote_repository( repo )
-          end
-          
-          unless options[:repos].nil?
-            repos = options[:repos]
-            unless repos.is_a? Array
-              repos = [repos]
-            end
-            
-            repos.each do |repo|
-              naether.add_remote_repository( repo[:url], repo[:username], repo[:password] )
-            end
-          end
+            naether.add_remote_repository( repo[:url].to_s, repo[:username], repo[:password] )           
+          end          
         end
         
         naether.local_repo_path = Repositories.instance.local
