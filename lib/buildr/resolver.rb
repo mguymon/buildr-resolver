@@ -17,6 +17,7 @@ module Buildr
       #
       # Options
       #   * :excludes - an array of dependencies to regex exclude
+      #   * :download - have Buildr::Resolver download artifacts instead of Buildr
       def resolve( dependencies, opts = {} )
         
         options = opts
@@ -31,7 +32,7 @@ module Buildr
         naether.local_repo_path = Repositories.instance.local
         
         naether.dependencies = dependencies
-        naether.resolve_dependencies( false )
+        naether.resolve_dependencies( opts[:download] == true )
         
         unless options[:excludes].nil?
           
