@@ -13,7 +13,17 @@ describe Buildr::Resolver do
         FileUtils::mkdir_p 'tmp/test-repo'
       end
       
+      Buildr.repositories.remote = 'http://repo1.maven.org/maven2/'
       Buildr::Resolver.naether.local_repo_path = 'tmp/test-repo'
+      Buildr.repositories.local = 'tmp/test-repo'
+    end
+    
+      
+    context "overrides for Buildr" do
+      it "should support hash repositories" do
+        Buildr.repositories.remote << { :url => 'http://test.com' }
+        Buildr.repositories.remote.last.should eql( { :url => URI.parse('http://test.com') } )
+      end
     end
     
     it "should resolve dependencies" do
@@ -61,10 +71,4 @@ describe Buildr::Resolver do
     end
   end
   
-  context "overrides for Buildr" do
-    it "should support hash repositories" do
-      Buildr.repositories.remote = { :url => 'http://test.com' }
-      Buildr.repositories.remote.should eql( [{ :url => URI.parse('http://test.com') }] )
-    end
-  end
 end
