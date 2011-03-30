@@ -27,8 +27,16 @@ module Buildr
         
         if Buildr.repositories.remote.size > 0
           naether.clear_remote_repositories
+          
+          # ensure repos have been converted to RepostoryArray
+          Buildr.repositories.remote = Buildr.repositories.remote
+          
           Buildr.repositories.remote.each do |repo|
-            naether.add_remote_repository( repo[:url].to_s, repo[:username], repo[:password] )           
+            begin
+              naether.add_remote_repository( repo[:url].to_s, repo[:username], repo[:password] ) 
+            rescue
+              
+            end
           end          
         end
         
