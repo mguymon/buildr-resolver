@@ -166,6 +166,7 @@ module Buildr
     def remote=(urls)
       case urls
       when nil then @remote = nil
+      when RepositoryArray then @remote = urls
       when Array then @remote = RepositoryArray.new(urls.dup)
       else @remote =  RepositoryArray.new([urls])
       end
