@@ -1,5 +1,6 @@
-require 'lib/buildr/resolver'
 require 'buildr'
+require 'lib/buildr/resolver'
+require 'uri'
 require 'fileutils'
 
 Buildr.application.instance_eval { @rakefile = File.expand_path('buildfile') }
@@ -57,6 +58,13 @@ describe Buildr::Resolver do
       Buildr::Resolver.write_pom( "buildr-resolver:buildr-resolver:jar:45.45", "tmp/pom.xml" )
       Buildr::Resolver.install_artifact( "buildr-resolver:buildr-resolver:jar:11.11", Naether::Bootstrap.naether_jar, {:pom_path => "tmp/pom.xml"} )
       File.exists?( "#{Buildr::Resolver.naether.local_repo_path}/buildr-resolver/11.11/buildr-resolver-11.11.jar" )
+    end
+  end
+  
+  context "overrides for Buildr" do
+    it "should support hash repositories" do
+      Buildr.repositories.remote = { :url => 'http://test.com' }
+      Buildr.repositories.remote.should eql( [{ :url => URI.parse('http://test.com') }] )
     end
   end
 end

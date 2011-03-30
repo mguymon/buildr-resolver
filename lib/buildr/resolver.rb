@@ -1,6 +1,9 @@
 require 'rubygems'
 require 'naether'
-require "#{File.dirname(__FILE__)}/resolver/java"
+require "buildr/resolver/java"
+require "buildr/packaging/repository_array"
+require "buildr/override/core/transports"
+require "buildr/override/packaging/artifact"
 
 module Buildr
   module Resolver
