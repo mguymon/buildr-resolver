@@ -87,7 +87,7 @@ module Buildr
       begin
         metadata_path = "#{group_path}/#{id}/#{version}/maven-metadata.xml"
         metadata_xml = StringIO.new
-        URI.download repo[:url] + metadata_path, metadata_xml
+        URI.download repo[:url] + metadata_path, metadata_xml, repo
         metadata = REXML::Document.new(metadata_xml.string).root
         timestamp = REXML::XPath.first(metadata, '//timestamp')
         build_number = REXML::XPath.first(metadata, '//buildNumber')
