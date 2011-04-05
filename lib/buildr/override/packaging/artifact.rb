@@ -72,7 +72,7 @@ module Buildr
         snapshot_url = current_snapshot_repo_url(repo)
         if snapshot_url
           begin
-            download_artifact snapshot_url
+            download_artifact snapshot_url, repo
             true
           rescue URI::NotFoundError
             false
