@@ -67,8 +67,12 @@ module Buildr
         naether.dependenciesNotation
       end
       
-      def deps_from_pom( file_path )
-        naether.pom_dependencies( file_path )
+      def deps_from_pom( pom_path )
+        naether.pom_dependencies( pom_path )
+      end
+      
+      def pom_version( pom_path )
+        naether.pom_version( pom_path )
       end
       
       def deploy_artifact( notation, file_path, url, opts = {} )
