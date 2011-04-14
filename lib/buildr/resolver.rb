@@ -6,6 +6,9 @@ require "buildr/override/core/transports"
 require "buildr/override/packaging/artifact"
 
 module Buildr
+  
+  repositories.remote = Buildr::RepositoryArray.new
+  
   module Resolver
     class << self
       
