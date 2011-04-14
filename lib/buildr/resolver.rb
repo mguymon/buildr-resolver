@@ -75,6 +75,10 @@ module Buildr
         naether.pom_version( pom_path )
       end
       
+      def write_pom( notation, file_path )
+        naether.write_pom( notation, file_path )
+      end
+      
       def deploy_artifact( notation, file_path, url, opts = {} )
         naether.deploy_artifact( notation, file_path, url, opts )
       end
@@ -83,9 +87,6 @@ module Buildr
         naether.install_artifact( notation, file_path, opts )
       end
       
-      def write_pom( notation, file_path )
-        naether.write_pom( notation, file_path )
-      end
     end
   end
 end
