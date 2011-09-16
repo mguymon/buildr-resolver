@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
 gem "naether", "0.4.0"
-gem "buildr",  "= 1.4.5"
+gem "buildr",  "~> 1.4.6"
 
 group :development do
   gem "bundler", "~> 1.0.0"
