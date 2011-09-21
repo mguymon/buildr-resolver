@@ -58,6 +58,17 @@ describe Buildr::Resolver do
       xml.should match /.+org.slf4j<\/groupId>\s+<artifactId>slf4j-api<\/artifactId>\s+<version>1.6.0.+/
       
     end
+
+    it "should get dependencies from a pom" do
+      Buildr::Resolver.resolve( ['ch.qos.logback:logback-classic:jar:0.9.24'] )
+      Buildr::Resolver.write_pom( "buildr-resolver:buildr-resolver:jar:45.45", "tmp/pom.xml" )
+      File.exists?( 'tmp/pom.xml' ).should be_true
+      
+      deps = Buildr::Resolver.deps_from_pom( 'tmp/pom.xml' )
+
+      deps.should eql ["ch.qos.logback:logback-classic:jar:0.9.24", "ch.qos.logback:logback-core:jar:0.9.24", "org.slf4j:slf4j-api:jar:1.6.0"]
+      
+    end
     
     it "should install a pom" do
       if File.exists?( "#{Buildr::Resolver.naether.local_repo_path}buildr-resolver/11.11/buildr-resolver-11.11.jar" )

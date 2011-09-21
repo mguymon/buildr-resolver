@@ -70,8 +70,8 @@ module Buildr
         naether.dependenciesNotation
       end
       
-      def deps_from_pom( pom_path )
-        naether.pom_dependencies( pom_path )
+      def deps_from_pom( pom_path, scope=nil )
+        naether.pom_dependencies( pom_path, scope )
       end
       
       def pom_version( pom_path )
