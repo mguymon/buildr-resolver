@@ -16,10 +16,12 @@ module Buildr
         Buildr::Resolver::Java.instance.naether
       end
       
-      # Resolve dependencies for an array of dependencies in the format of 'groupId:artifactId:type:version'
-      # or as a hash to define the scope, 'groupId:artifactId:type:version' => 'compile'. Example:
+      # Resolve dependencies for an array of dependencies in the format of path to a pom.xml, 
+      # a hash for a pom.xml and scopes to use 'lib/pom.xml' => ['compile','system'], 
+      # dependency notation 'groupId:artifactId:type:version' or as a hash to define 
+      # the scope, or 'groupId:artifactId:type:version' => 'compile'. Example:
       #
-      # [ 'ch.qos.logback:logback-classic:jar:0.9.24', {'junit:junit:jar:4.8.2' => 'test'} ] 
+      # [ 'lib/pom.xml', 'ch.qos.logback:logback-classic:jar:0.9.24', {'junit:junit:jar:4.8.2' => 'test'} ] 
       #
       # Options
       #   * :excludes - an array of dependencies to regex exclude
@@ -70,7 +72,7 @@ module Buildr
         naether.dependenciesNotation
       end
       
-      def deps_from_pom( pom_path, scope=nil )
+      def deps_from_pom( pom_path, scope=nil  )
         naether.pom_dependencies( pom_path, scope )
       end
       

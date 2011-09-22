@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "naether", "0.4.1"
+gem "naether", "0.4.3"
 gem "buildr",  "~> 1.4.6"
 
 group :development do
