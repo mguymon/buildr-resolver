@@ -27,7 +27,7 @@ describe Buildr::Resolver do
     end
     
     it "should resolve dependencies" do
-      dependencies = Buildr::Resolver.resolve( ['ch.qos.logback:logback-classic:jar:0.9.24'] )
+      dependencies = Buildr::Resolver.resolve( ['ch.qos.logback:logback-classic:jar:0.9.24' => 'test'] )
       
       dependencies.should eql ["ch.qos.logback:logback-classic:jar:0.9.24", "ch.qos.logback:logback-core:jar:0.9.24", "org.slf4j:slf4j-api:jar:1.6.0"]
     end
@@ -65,9 +65,11 @@ describe Buildr::Resolver do
       File.exists?( 'tmp/pom.xml' ).should be_true
       
       deps = Buildr::Resolver.deps_from_pom( 'tmp/pom.xml' )
-
       deps.should eql ["ch.qos.logback:logback-classic:jar:0.9.24", "ch.qos.logback:logback-core:jar:0.9.24", "org.slf4j:slf4j-api:jar:1.6.0"]
-      
+        
+      deps = Buildr::Resolver.resolve( 'tmp/pom.xml' )
+      deps.should eql ["ch.qos.logback:logback-classic:jar:0.9.24", "ch.qos.logback:logback-core:jar:0.9.24", "org.slf4j:slf4j-api:jar:1.6.0"]
+            
     end
     
     it "should install a pom" do
