@@ -28,10 +28,10 @@ The <tt>Buildr::Resolver.resolve(deps)</tt> is what takes the dependency notatio
 
 The <tt>Buildr::Resolver.resolve</tt> accepts an array of dependencies in the format of:
 
-  * Path to a pom.xml: 'lib/pom.xml'
-  * A hash for a pom.xml and scopes to use: 'lib/pom.xml' => ['compile','system'], 
-  * Dependency notation: 'log4j:log4j:jar:1.2.12' 
-  * A hash for a Dependency notation and scope to use: 'log4j:log4j:jar:1.2.12' => 'compile'
+* Path to a pom.xml: 'lib/pom.xml'
+* A hash for a pom.xml and scopes to use: 'lib/pom.xml' => ['compile','system'], 
+* Dependency notation: 'log4j:log4j:jar:1.2.12' 
+* A hash for a Dependency notation and scope to use: 'log4j:log4j:jar:1.2.12' => 'compile'
 
 Example:
       
