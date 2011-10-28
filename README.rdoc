@@ -15,23 +15,15 @@ gem install buildr-resolver
 
 example +buildfile+ 
 
-	require 'buildr/resolver'
-
-	Java.load # must be called before Buildr::Resolver.resolve if not using JRuby due to Rjb startup of JVM by Buildr
-
-	deps = ['org.apache.activemq:activemq-spring:jar:5.4.2']
-
-	deps =  Buildr::Resolver.resolve( deps )
-
-	define 'example' do
-
-		project.version = '0.1.0'
-
-		compile.with deps
-
-		package :jar
-
-	end
+  require 'buildr/resolver'
+  Java.load # must be called before Buildr::Resolver.resolve if not using JRuby due to Rjb startup of JVM by Buildr
+  deps = ['org.apache.activemq:activemq-spring:jar:5.4.2']
+  deps =  Buildr::Resolver.resolve( deps )
+  define 'example' do
+    project.version = '0.1.0'
+    compile.with deps
+    package :jar
+  end
 	
 The <tt>Buildr::Resolver.resolve(deps)</tt> is what takes the activemq dependency and resolves 
 all the additional dependencies for it. If you added a <tt>puts dep</tt> after <tt>Buildr::Resolver.resolve</tt>, it would output:
