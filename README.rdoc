@@ -31,7 +31,7 @@ The <tt>Buildr::Resolver.resolve</tt> accepts an array of dependencies in the fo
 * Path to a pom.xml: <tt>'lib/pom.xml'</tt>
 * A hash for a pom.xml and scopes to use: <tt>'lib/pom.xml' => ['compile','system']</tt>
 * Dependency notation: <tt>'log4j:log4j:jar:1.2.12'</tt> 
-* A hash for a Dependency notation and scope to use: <tt>'log4j:log4j:jar:1.2.12' => 'compile'</tt>
+* A hash for a Dependency notation and scope to use: <tt>'log4j:log4j:jar:1.2.12' => ['compile']</tt>
 
 Example:
       
