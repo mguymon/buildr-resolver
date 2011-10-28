@@ -13,7 +13,20 @@ gem install buildr-resolver
 
 === Usage
 
-example +buildfile+ 
+
+The <tt>Buildr::Resolver.resolve(deps)</tt> is what takes the <tt>org.apache.activemq:activemq-spring:jar:5.4.2</tt> dependency and resolves all the additional dependencies for it. If you added a <tt>puts dep</tt> after <tt>Buildr::Resolver.resolve</tt>, it would output:
+
+  org.apache.activemq:activemq-spring:jar:5.4.2
+  commons-logging:commons-logging-api:jar:1.1
+  org.apache.activemq:activemq-core:jar:5.4.2
+  org.apache.geronimo.specs:geronimo-jms_1.1_spec:jar:1.1.1
+  org.apache.activemq:activeio-core:jar:3.1.2
+  commons-logging:commons-logging:jar:1.1
+  log4j:log4j:jar:1.2.12
+  logkit:logkit:jar:1.0.1
+  (many more)
+
+==== Resolve Dependencies 
 
   require 'buildr/resolver'
   Java.load # must be called before Buildr::Resolver.resolve if not using JRuby due to Rjb startup of JVM by Buildr
@@ -24,20 +37,16 @@ example +buildfile+
     compile.with deps
     package :jar
   end
-	
-The <tt>Buildr::Resolver.resolve(deps)</tt> is what takes the activemq dependency and resolves 
-all the additional dependencies for it. If you added a <tt>puts dep</tt> after <tt>Buildr::Resolver.resolve</tt>, it would output:
 
-  org.apache.activemq:activemq-spring:jar:5.4.2
-
-  commons-logging:commons-logging-api:jar:1.1
-  org.apache.activemq:activemq-core:jar:5.4.2
-  org.apache.geronimo.specs:geronimo-jms_1.1_spec:jar:1.1.1
-  org.apache.activemq:activeio-core:jar:3.1.2
-  commons-logging:commons-logging:jar:1.1
-  log4j:log4j:jar:1.2.12
-  logkit:logkit:jar:1.0.1
-  (many more)
+==== Resolve Dependencies from a POM
+  require 'buildr/resolver'
+  Java.load # must be called before Buildr::Resolver.resolve if not using JRuby due to Rjb startup of JVM by Buildr
+  task :compile => :resolve_deps
+  task :resolve_deps do |t|
+    DEP_EXCLUDES = ['commons-logging', 'log4j', 'logkit']
+    resolved_deps = Buildr::Resolver.resolve( {_('pom.xml') => ['compile']}, :download => true, :excludes => DEP_EXCLUDES )
+    compile.with( resolved_deps )
+  end 
 
 == License
 
