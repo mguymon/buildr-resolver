@@ -11,6 +11,10 @@ https://github.com/mguymon/buildr-resolver
 
 gem install buildr-resolver
 
+=== Examples
+ 
+{Wiki}[https://github.com/mguymon/buildr-resolver/wiki]
+
 === Usage
 
 
@@ -26,7 +30,7 @@ The <tt>Buildr::Resolver.resolve(deps)</tt> is what takes the dependency notatio
   logkit:logkit:jar:1.0.1
   (many more)
 
-==== Buildr::Resolver#resolve
+==== {Buildr::Resolver#resolve}[https://github.com/mguymon/buildr-resolver/blob/master/lib/buildr/resolver.rb]
 The <tt>Buildr::Resolver#resolve</tt> accepts an array of dependencies in the format of:
 
 * Path to a pom.xml: <tt>'lib/pom.xml'</tt>
