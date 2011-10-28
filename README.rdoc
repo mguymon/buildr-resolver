@@ -14,7 +14,7 @@ gem install buildr-resolver
 === Usage
 
 
-The <tt>Buildr::Resolver.resolve(deps)</tt> is what takes the artifact notation and find all the related dependencies. For exampe, resolving <tt>org.apache.activemq:activemq-spring:jar:5.4.2</tt> would resolve to:
+The <tt>Buildr::Resolver.resolve(deps)</tt> is what takes the dependency notation and find all the related dependencies. For exampe, resolving <tt>org.apache.activemq:activemq-spring:jar:5.4.2</tt> would resolve to:
 
   org.apache.activemq:activemq-spring:jar:5.4.2
   commons-logging:commons-logging-api:jar:1.1
@@ -26,7 +26,14 @@ The <tt>Buildr::Resolver.resolve(deps)</tt> is what takes the artifact notation 
   logkit:logkit:jar:1.0.1
   (many more)
 
-The <tt>Buildr::Resolver.resolve<tt> accepts an array of dependencies in the format of path to a pom.xml, a hash for a pom.xml and scopes to use 'lib/pom.xml' => ['compile','system'], dependency notation 'groupId:artifactId:type:version' or as a hash to define the scope, or 'groupId:artifactId:type:version' => 'compile'. Example:
+The <tt>Buildr::Resolver.resolve</tt> accepts an array of dependencies in the format of:
+
+  * Path to a pom.xml: 'lib/pom.xml'
+  * A hash for a pom.xml and scopes to use: 'lib/pom.xml' => ['compile','system'], 
+  * Dependency notation: 'log4j:log4j:jar:1.2.12' 
+  * A hash for a Dependency notation and scope to use: 'log4j:log4j:jar:1.2.12' => 'compile'
+
+Example:
       
   Buildr::Resolver.resolve( [ {'lib/pom.xml' => ["test"] }, 'ch.qos.logback:logback-classic:jar:0.9.24', {'junit:junit:jar:4.8.2' => 'test'} ] ) 
 
