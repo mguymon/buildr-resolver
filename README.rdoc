@@ -38,13 +38,13 @@ The <tt>Buildr::Resolver#resolve</tt> accepts an array of dependencies in the fo
 * Dependency notation: <tt>'log4j:log4j:jar:1.2.12'</tt> 
 * A hash for a Dependency notation and scope to use: <tt>'log4j:log4j:jar:1.2.12' => ['compile']</tt>
 
-Example:
-      
-  Buildr::Resolver.resolve( [ {'lib/pom.xml' => ["test"] }, 'ch.qos.logback:logback-classic:jar:0.9.24', {'junit:junit:jar:4.8.2' => 'test'} ] ) 
-
 Options
   * :excludes - an array of dependencies to regex exclude
   * :download - have Buildr::Resolver download artifacts instead of Buildr
+
+Example:
+      
+  Buildr::Resolver.resolve( [ {'lib/pom.xml' => ["test"] }, 'ch.qos.logback:logback-classic:jar:0.9.24', {'junit:junit:jar:4.8.2' => 'test'} ], :download => true ) 
 
 ==== Resolve Dependencies 
 
