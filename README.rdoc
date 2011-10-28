@@ -14,7 +14,7 @@ gem install buildr-resolver
 === Usage
 
 
-The <tt>Buildr::Resolver.resolve(deps)</tt> is what takes the <tt>org.apache.activemq:activemq-spring:jar:5.4.2</tt> dependency and resolves all the additional dependencies for it. If you added a <tt>puts dep</tt> after <tt>Buildr::Resolver.resolve</tt>, it would output:
+The <tt>Buildr::Resolver.resolve(deps)</tt> is what takes the artifact notation and find all the related dependencies. For exampe, resolving <tt>org.apache.activemq:activemq-spring:jar:5.4.2</tt> would resolve to:
 
   org.apache.activemq:activemq-spring:jar:5.4.2
   commons-logging:commons-logging-api:jar:1.1
@@ -25,6 +25,14 @@ The <tt>Buildr::Resolver.resolve(deps)</tt> is what takes the <tt>org.apache.act
   log4j:log4j:jar:1.2.12
   logkit:logkit:jar:1.0.1
   (many more)
+
+The <tt>Buildr::Resolver.resolve<tt> accepts an array of dependencies in the format of path to a pom.xml, a hash for a pom.xml and scopes to use 'lib/pom.xml' => ['compile','system'], dependency notation 'groupId:artifactId:type:version' or as a hash to define the scope, or 'groupId:artifactId:type:version' => 'compile'. Example:
+      
+  Buildr::Resolver.resolve( [ {'lib/pom.xml' => ["test"] }, 'ch.qos.logback:logback-classic:jar:0.9.24', {'junit:junit:jar:4.8.2' => 'test'} ] ) 
+
+Options
+  * :excludes - an array of dependencies to regex exclude
+  * :download - have Buildr::Resolver download artifacts instead of Buildr
 
 ==== Resolve Dependencies 
 
