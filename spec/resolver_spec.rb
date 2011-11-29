@@ -73,14 +73,15 @@ describe Buildr::Resolver do
     end
     
     it "should install a pom" do
-      if File.exists?( "#{Buildr::Resolver.naether.local_repo_path}buildr-resolver/11.11/buildr-resolver-11.11.jar" )
-        File.delete("#{Buildr::Resolver.naether.local_repo_path}buildr-resolver/11.11/buildr-resolver-11.11.jar")
+      if File.exists?( "#{Buildr::Resolver.naether.local_repo_path}buildr-resolver/buildr-resolver/11.11/buildr-resolver-11.11.jar" )
+        File.delete("#{Buildr::Resolver.naether.local_repo_path}buildr-resolver/buildr-resolver/11.11/buildr-resolver-11.11.jar")
       end
       
       Buildr::Resolver.resolve( ['ch.qos.logback:logback-classic:jar:0.9.24'] )
       Buildr::Resolver.write_pom( "buildr-resolver:buildr-resolver:jar:45.45", "tmp/pom.xml" )
-      Buildr::Resolver.install_artifact( "buildr-resolver:buildr-resolver:jar:11.11", Naether::Bootstrap.naether_jar, {:pom_path => "tmp/pom.xml"} )
-      File.exists?( "#{Buildr::Resolver.naether.local_repo_path}/buildr-resolver/11.11/buildr-resolver-11.11.jar" )
+      Buildr::Resolver.install( "buildr-resolver:buildr-resolver:jar:11.11", "tmp/pom.xml", Naether::Bootstrap.naether_jar )
+      File.exists?( "#{Buildr::Resolver.naether.local_repo_path}/buildr-resolver/buildr-resolver/11.11/buildr-resolver-11.11.jar" ).should be_true
+      File.exists?( "#{Buildr::Resolver.naether.local_repo_path}/buildr-resolver/buildr-resolver/11.11/buildr-resolver-11.11.pom" ).should be_true
     end
   end
   
