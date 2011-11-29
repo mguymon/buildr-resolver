@@ -88,8 +88,8 @@ module Buildr
         naether.deploy_artifact( notation, file_path, url, opts )
       end
       
-      def install_artifact( notation, file_path, opts = {} )
-        naether.install_artifact( notation, file_path, opts )
+      def install( notation, pom_path, jar_path )
+        naether.install( notation, pom_path, jar_path )
       end
       
     end
