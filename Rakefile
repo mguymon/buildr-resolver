@@ -31,6 +31,10 @@ Jeweler::Tasks.new do |gem|
   gem.authors = ["Michael Guymon"]
   gem.require_paths = %w[lib]
   
+  ruby_files = Dir.glob("lib/**/*.rb")
+  gem.files = ruby_files + ['VERSION', 'LICENSE','README.rdoc']
+
+  
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
   #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
