@@ -30,9 +30,7 @@ Jeweler::Tasks.new do |gem|
   gem.email = "michael.guymon@gmail.com"
   gem.authors = ["Michael Guymon"]
   gem.require_paths = %w[lib]
-  
-  ruby_files = Dir.glob("lib/**/*.rb")
-  gem.files = ruby_files + ['VERSION', 'LICENSE','README.rdoc']
+  gem.files = Dir["lib/**/*.rb", 'VERSION', 'LICENSE','README.rdoc', 'Rakefile', '*.gemspec']
 
   
   # Include your dependencies below. Runtime dependencies are required when using your gem,

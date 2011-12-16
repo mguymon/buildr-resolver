@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
     "README.rdoc"
   ]
   s.files = [
-    "Gemfile",
     "LICENSE",
     "README.rdoc",
     "Rakefile",
@@ -27,9 +26,7 @@ Gem::Specification.new do |s|
     "lib/buildr/override/packaging/artifact.rb",
     "lib/buildr/packaging/repository_array.rb",
     "lib/buildr/resolver.rb",
-    "lib/buildr/resolver/java.rb",
-    "spec/repository_array_spec.rb",
-    "spec/resolver_spec.rb"
+    "lib/buildr/resolver/java.rb"
   ]
   s.homepage = "http://github.com/mguymon/buildr-resolver"
   s.licenses = ["Apache"]
