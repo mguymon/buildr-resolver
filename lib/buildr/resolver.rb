@@ -48,7 +48,7 @@ module Buildr
         naether.local_repo_path = Repositories.instance.local
         
         naether.dependencies = dependencies
-        naether.resolve_dependencies( opts[:download] == true )
+        naether.resolve_dependencies( opts[:download] == true, opts[:properties] )
         
         unless options[:excludes].nil?
           
