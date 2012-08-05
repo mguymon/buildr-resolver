@@ -5,6 +5,8 @@ A Java dependency resolver for {Buildr}[https://github.com/apache/buildr] using 
 
 https://github.com/mguymon/buildr-resolver
 
+Deprecated in favor of {LockJar}[https://github.com/mguymon/lock_jar]
+
 == Get Started
 
 === Install
